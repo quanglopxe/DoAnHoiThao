@@ -10,7 +10,11 @@ namespace WebHoiThao.Controllers
     {
         //
         // GET: /Home/
-        public ActionResult Index()
+        public ActionResult Admin_Page()
+        {
+            return View();
+        }
+        public ActionResult User_Page()
         {
             return View();
         }

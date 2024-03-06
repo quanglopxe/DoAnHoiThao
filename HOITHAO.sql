@@ -8,7 +8,7 @@ CREATE TABLE Users (
   password VARCHAR(50) NOT NULL,
   email VARCHAR(100) NOT NULL,
   full_name VARCHAR(100) NOT NULL,
-  affiliation VARCHAR(100) NOT NULL,
+  affiliation VARCHAR(100),
   role VARCHAR(50) NOT NULL,
   CHECK (role IN ('Admin', 'User'))
 );
@@ -72,3 +72,10 @@ CREATE TABLE Review (
   FOREIGN KEY (paper_id) REFERENCES Paper(paper_id),
   FOREIGN KEY (reviewer_id) REFERENCES Users(user_id)
 );
+
+INSERT INTO Users
+VALUES
+('1','quang','123','quang@gmail.com','duong thuan quang',null,'Admin'),
+('2','user','123','user@gmail.com','nguyen van a',null,'User')
+
+select * from Users

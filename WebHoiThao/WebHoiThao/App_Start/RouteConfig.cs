@@ -16,7 +16,7 @@ namespace WebHoiThao
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "User_Page", id = UrlParameter.Optional }
             );
         }
     }
