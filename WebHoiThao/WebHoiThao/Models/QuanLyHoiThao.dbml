@@ -17,7 +17,7 @@
       <Column Name="email" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="full_name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="affiliation" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="role" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="role" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="User_Review" Member="Reviews" ThisKey="user_id" OtherKey="reviewer_id" Type="Review" />
     </Type>
   </Table>

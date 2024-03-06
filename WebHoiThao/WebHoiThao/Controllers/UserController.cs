@@ -81,6 +81,7 @@ namespace WebHoiThao.Controllers
             try
             {
                 User nd = db.Users.FirstOrDefault(t => t.user_id == user.user_id);
+                nd.user_id = user.user_id;
                 nd.full_name = user.full_name;
                 nd.email = user.email;
                 nd.affiliation = user.affiliation;

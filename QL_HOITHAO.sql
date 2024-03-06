@@ -11,7 +11,7 @@ CREATE TABLE Users (
   affiliation VARCHAR(100),
   country VARCHAR(100) NOT NULL,
   role VARCHAR(50) NOT NULL,
-  CHECK (role IN ('Admin', 'User'))
+  CHECK (role IN ('Admin', null))
 );
 
 CREATE TABLE Authors (
