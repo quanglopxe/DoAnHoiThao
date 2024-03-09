@@ -4,12 +4,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebHoiThao.Models;
+using BCryptNet = BCrypt.Net.BCrypt;
+
 
 namespace WebHoiThao.Controllers
 {
     public class UserController : Controller
     {
         QuanLyHoiThaoDataContext db = new QuanLyHoiThaoDataContext();
+
+        public static string HashPassword(string password)
+        {                        
+            var salt = BCrypt.Net.BCrypt.GenerateSalt();
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);           
+            return hashedPassword;
+        }        
 
         public ActionResult Login()
         {
@@ -18,15 +27,24 @@ namespace WebHoiThao.Controllers
         [HttpPost]
         public ActionResult Login(User user)
         {
+            if (user == null)
+                return View();
             try
             {
-                User nd = db.Users.FirstOrDefault(t => t.username == user.username && t.password == user.password);
-                Session["User"] = nd;
+                User nd = db.Users.FirstOrDefault(t => t.username == user.username);
+                
                 if (nd == null)
                 {                     
-                    ViewBag.ErrorMessage = "Tên tài khoản hoặc mật khẩu không đúng.";
+                    ViewBag.ErrorMessage = "Tên tài khoản không tồn tại!";
                     return View();
                 }
+                string inputPassword = user.password;
+                if (!BCrypt.Net.BCrypt.Verify(inputPassword,nd.password))
+                {
+                    ViewBag.ErrorMessage = "Mật khẩu không đúng.";
+                    return View();
+                }
+                Session["User"] = nd;
                 if (nd != null && nd.role == "Admin")
                 {
                     return RedirectToAction("Admin_Page", "Home");
@@ -57,6 +75,7 @@ namespace WebHoiThao.Controllers
                     return View();
                 }
                 user.user_id = maND;
+                user.password = HashPassword(user.password);
                 db.Users.InsertOnSubmit(user);
                 db.SubmitChanges();
                 return RedirectToAction("Login", "User");

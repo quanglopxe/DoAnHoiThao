@@ -36,21 +36,12 @@ namespace WebHoiThao.Models
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
-    partial void InsertConference(Conference instance);
-    partial void UpdateConference(Conference instance);
-    partial void DeleteConference(Conference instance);
     partial void InsertPaper(Paper instance);
     partial void UpdatePaper(Paper instance);
     partial void DeletePaper(Paper instance);
-    partial void InsertRegistrationForm(RegistrationForm instance);
-    partial void UpdateRegistrationForm(RegistrationForm instance);
-    partial void DeleteRegistrationForm(RegistrationForm instance);
     partial void InsertReview(Review instance);
     partial void UpdateReview(Review instance);
     partial void DeleteReview(Review instance);
-    partial void InsertSchedule(Schedule instance);
-    partial void UpdateSchedule(Schedule instance);
-    partial void DeleteSchedule(Schedule instance);
     #endregion
 		
 		public QuanLyHoiThaoDataContext() : 
@@ -99,14 +90,6 @@ namespace WebHoiThao.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Conference> Conferences
-		{
-			get
-			{
-				return this.GetTable<Conference>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Paper> Papers
 		{
 			get
@@ -115,27 +98,11 @@ namespace WebHoiThao.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<RegistrationForm> RegistrationForms
-		{
-			get
-			{
-				return this.GetTable<RegistrationForm>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Review> Reviews
 		{
 			get
 			{
 				return this.GetTable<Review>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Schedule> Schedules
-		{
-			get
-			{
-				return this.GetTable<Schedule>();
 			}
 		}
 	}
@@ -314,11 +281,15 @@ namespace WebHoiThao.Models
 		
 		private string _password;
 		
+		private string _salt;
+		
 		private string _email;
 		
 		private string _full_name;
 		
 		private string _affiliation;
+		
+		private string _country;
 		
 		private string _role;
 		
@@ -334,12 +305,16 @@ namespace WebHoiThao.Models
     partial void OnusernameChanged();
     partial void OnpasswordChanging(string value);
     partial void OnpasswordChanged();
+    partial void OnsaltChanging(string value);
+    partial void OnsaltChanged();
     partial void OnemailChanging(string value);
     partial void OnemailChanged();
     partial void Onfull_nameChanging(string value);
     partial void Onfull_nameChanged();
     partial void OnaffiliationChanging(string value);
     partial void OnaffiliationChanged();
+    partial void OncountryChanging(string value);
+    partial void OncountryChanged();
     partial void OnroleChanging(string value);
     partial void OnroleChanged();
     #endregion
@@ -390,7 +365,7 @@ namespace WebHoiThao.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
 		public string password
 		{
 			get
@@ -406,6 +381,26 @@ namespace WebHoiThao.Models
 					this._password = value;
 					this.SendPropertyChanged("password");
 					this.OnpasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_salt", DbType="VarChar(200)")]
+		public string salt
+		{
+			get
+			{
+				return this._salt;
+			}
+			set
+			{
+				if ((this._salt != value))
+				{
+					this.OnsaltChanging(value);
+					this.SendPropertyChanging();
+					this._salt = value;
+					this.SendPropertyChanged("salt");
+					this.OnsaltChanged();
 				}
 			}
 		}
@@ -466,6 +461,26 @@ namespace WebHoiThao.Models
 					this._affiliation = value;
 					this.SendPropertyChanged("affiliation");
 					this.OnaffiliationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_country", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string country
+		{
+			get
+			{
+				return this._country;
+			}
+			set
+			{
+				if ((this._country != value))
+				{
+					this.OncountryChanging(value);
+					this.SendPropertyChanging();
+					this._country = value;
+					this.SendPropertyChanged("country");
+					this.OncountryChanged();
 				}
 			}
 		}
@@ -536,248 +551,6 @@ namespace WebHoiThao.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Conference")]
-	public partial class Conference : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _conference_id;
-		
-		private string _name;
-		
-		private string _description;
-		
-		private System.DateTime _start_date;
-		
-		private System.DateTime _end_date;
-		
-		private EntitySet<Paper> _Papers;
-		
-		private EntitySet<RegistrationForm> _RegistrationForms;
-		
-		private EntitySet<Schedule> _Schedules;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onconference_idChanging(string value);
-    partial void Onconference_idChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OndescriptionChanging(string value);
-    partial void OndescriptionChanged();
-    partial void Onstart_dateChanging(System.DateTime value);
-    partial void Onstart_dateChanged();
-    partial void Onend_dateChanging(System.DateTime value);
-    partial void Onend_dateChanged();
-    #endregion
-		
-		public Conference()
-		{
-			this._Papers = new EntitySet<Paper>(new Action<Paper>(this.attach_Papers), new Action<Paper>(this.detach_Papers));
-			this._RegistrationForms = new EntitySet<RegistrationForm>(new Action<RegistrationForm>(this.attach_RegistrationForms), new Action<RegistrationForm>(this.detach_RegistrationForms));
-			this._Schedules = new EntitySet<Schedule>(new Action<Schedule>(this.attach_Schedules), new Action<Schedule>(this.detach_Schedules));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_conference_id", DbType="VarChar(30) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string conference_id
-		{
-			get
-			{
-				return this._conference_id;
-			}
-			set
-			{
-				if ((this._conference_id != value))
-				{
-					this.Onconference_idChanging(value);
-					this.SendPropertyChanging();
-					this._conference_id = value;
-					this.SendPropertyChanged("conference_id");
-					this.Onconference_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		public string description
-		{
-			get
-			{
-				return this._description;
-			}
-			set
-			{
-				if ((this._description != value))
-				{
-					this.OndescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._description = value;
-					this.SendPropertyChanged("description");
-					this.OndescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_start_date", DbType="Date NOT NULL")]
-		public System.DateTime start_date
-		{
-			get
-			{
-				return this._start_date;
-			}
-			set
-			{
-				if ((this._start_date != value))
-				{
-					this.Onstart_dateChanging(value);
-					this.SendPropertyChanging();
-					this._start_date = value;
-					this.SendPropertyChanged("start_date");
-					this.Onstart_dateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_end_date", DbType="Date NOT NULL")]
-		public System.DateTime end_date
-		{
-			get
-			{
-				return this._end_date;
-			}
-			set
-			{
-				if ((this._end_date != value))
-				{
-					this.Onend_dateChanging(value);
-					this.SendPropertyChanging();
-					this._end_date = value;
-					this.SendPropertyChanged("end_date");
-					this.Onend_dateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Conference_Paper", Storage="_Papers", ThisKey="conference_id", OtherKey="conference_id")]
-		public EntitySet<Paper> Papers
-		{
-			get
-			{
-				return this._Papers;
-			}
-			set
-			{
-				this._Papers.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Conference_RegistrationForm", Storage="_RegistrationForms", ThisKey="conference_id", OtherKey="conference_id")]
-		public EntitySet<RegistrationForm> RegistrationForms
-		{
-			get
-			{
-				return this._RegistrationForms;
-			}
-			set
-			{
-				this._RegistrationForms.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Conference_Schedule", Storage="_Schedules", ThisKey="conference_id", OtherKey="conference_id")]
-		public EntitySet<Schedule> Schedules
-		{
-			get
-			{
-				return this._Schedules;
-			}
-			set
-			{
-				this._Schedules.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Papers(Paper entity)
-		{
-			this.SendPropertyChanging();
-			entity.Conference = this;
-		}
-		
-		private void detach_Papers(Paper entity)
-		{
-			this.SendPropertyChanging();
-			entity.Conference = null;
-		}
-		
-		private void attach_RegistrationForms(RegistrationForm entity)
-		{
-			this.SendPropertyChanging();
-			entity.Conference = this;
-		}
-		
-		private void detach_RegistrationForms(RegistrationForm entity)
-		{
-			this.SendPropertyChanging();
-			entity.Conference = null;
-		}
-		
-		private void attach_Schedules(Schedule entity)
-		{
-			this.SendPropertyChanging();
-			entity.Conference = this;
-		}
-		
-		private void detach_Schedules(Schedule entity)
-		{
-			this.SendPropertyChanging();
-			entity.Conference = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Paper")]
 	public partial class Paper : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -792,15 +565,11 @@ namespace WebHoiThao.Models
 		
 		private string _author_id;
 		
-		private string _conference_id;
-		
 		private string _status;
 		
 		private EntitySet<Review> _Reviews;
 		
 		private EntityRef<Author> _Author;
-		
-		private EntityRef<Conference> _Conference;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -814,8 +583,6 @@ namespace WebHoiThao.Models
     partial void OnabstractChanged();
     partial void Onauthor_idChanging(string value);
     partial void Onauthor_idChanged();
-    partial void Onconference_idChanging(string value);
-    partial void Onconference_idChanged();
     partial void OnstatusChanging(string value);
     partial void OnstatusChanged();
     #endregion
@@ -824,7 +591,6 @@ namespace WebHoiThao.Models
 		{
 			this._Reviews = new EntitySet<Review>(new Action<Review>(this.attach_Reviews), new Action<Review>(this.detach_Reviews));
 			this._Author = default(EntityRef<Author>);
-			this._Conference = default(EntityRef<Conference>);
 			OnCreated();
 		}
 		
@@ -912,30 +678,6 @@ namespace WebHoiThao.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_conference_id", DbType="VarChar(30)")]
-		public string conference_id
-		{
-			get
-			{
-				return this._conference_id;
-			}
-			set
-			{
-				if ((this._conference_id != value))
-				{
-					if (this._Conference.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onconference_idChanging(value);
-					this.SendPropertyChanging();
-					this._conference_id = value;
-					this.SendPropertyChanged("conference_id");
-					this.Onconference_idChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string status
 		{
@@ -1003,40 +745,6 @@ namespace WebHoiThao.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Conference_Paper", Storage="_Conference", ThisKey="conference_id", OtherKey="conference_id", IsForeignKey=true)]
-		public Conference Conference
-		{
-			get
-			{
-				return this._Conference.Entity;
-			}
-			set
-			{
-				Conference previousValue = this._Conference.Entity;
-				if (((previousValue != value) 
-							|| (this._Conference.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Conference.Entity = null;
-						previousValue.Papers.Remove(this);
-					}
-					this._Conference.Entity = value;
-					if ((value != null))
-					{
-						value.Papers.Add(this);
-						this._conference_id = value.conference_id;
-					}
-					else
-					{
-						this._conference_id = default(string);
-					}
-					this.SendPropertyChanged("Conference");
-				}
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1070,229 +778,6 @@ namespace WebHoiThao.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RegistrationForm")]
-	public partial class RegistrationForm : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _registration_id;
-		
-		private string _conference_id;
-		
-		private string _participant_name;
-		
-		private string _email;
-		
-		private string _affiliation;
-		
-		private System.DateTime _registration_date;
-		
-		private EntityRef<Conference> _Conference;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onregistration_idChanging(string value);
-    partial void Onregistration_idChanged();
-    partial void Onconference_idChanging(string value);
-    partial void Onconference_idChanged();
-    partial void Onparticipant_nameChanging(string value);
-    partial void Onparticipant_nameChanged();
-    partial void OnemailChanging(string value);
-    partial void OnemailChanged();
-    partial void OnaffiliationChanging(string value);
-    partial void OnaffiliationChanged();
-    partial void Onregistration_dateChanging(System.DateTime value);
-    partial void Onregistration_dateChanged();
-    #endregion
-		
-		public RegistrationForm()
-		{
-			this._Conference = default(EntityRef<Conference>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_registration_id", DbType="VarChar(30) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string registration_id
-		{
-			get
-			{
-				return this._registration_id;
-			}
-			set
-			{
-				if ((this._registration_id != value))
-				{
-					this.Onregistration_idChanging(value);
-					this.SendPropertyChanging();
-					this._registration_id = value;
-					this.SendPropertyChanged("registration_id");
-					this.Onregistration_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_conference_id", DbType="VarChar(30)")]
-		public string conference_id
-		{
-			get
-			{
-				return this._conference_id;
-			}
-			set
-			{
-				if ((this._conference_id != value))
-				{
-					if (this._Conference.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onconference_idChanging(value);
-					this.SendPropertyChanging();
-					this._conference_id = value;
-					this.SendPropertyChanged("conference_id");
-					this.Onconference_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_participant_name", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string participant_name
-		{
-			get
-			{
-				return this._participant_name;
-			}
-			set
-			{
-				if ((this._participant_name != value))
-				{
-					this.Onparticipant_nameChanging(value);
-					this.SendPropertyChanging();
-					this._participant_name = value;
-					this.SendPropertyChanged("participant_name");
-					this.Onparticipant_nameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string email
-		{
-			get
-			{
-				return this._email;
-			}
-			set
-			{
-				if ((this._email != value))
-				{
-					this.OnemailChanging(value);
-					this.SendPropertyChanging();
-					this._email = value;
-					this.SendPropertyChanged("email");
-					this.OnemailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_affiliation", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string affiliation
-		{
-			get
-			{
-				return this._affiliation;
-			}
-			set
-			{
-				if ((this._affiliation != value))
-				{
-					this.OnaffiliationChanging(value);
-					this.SendPropertyChanging();
-					this._affiliation = value;
-					this.SendPropertyChanged("affiliation");
-					this.OnaffiliationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_registration_date", DbType="Date NOT NULL")]
-		public System.DateTime registration_date
-		{
-			get
-			{
-				return this._registration_date;
-			}
-			set
-			{
-				if ((this._registration_date != value))
-				{
-					this.Onregistration_dateChanging(value);
-					this.SendPropertyChanging();
-					this._registration_date = value;
-					this.SendPropertyChanged("registration_date");
-					this.Onregistration_dateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Conference_RegistrationForm", Storage="_Conference", ThisKey="conference_id", OtherKey="conference_id", IsForeignKey=true)]
-		public Conference Conference
-		{
-			get
-			{
-				return this._Conference.Entity;
-			}
-			set
-			{
-				Conference previousValue = this._Conference.Entity;
-				if (((previousValue != value) 
-							|| (this._Conference.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Conference.Entity = null;
-						previousValue.RegistrationForms.Remove(this);
-					}
-					this._Conference.Entity = value;
-					if ((value != null))
-					{
-						value.RegistrationForms.Add(this);
-						this._conference_id = value.conference_id;
-					}
-					else
-					{
-						this._conference_id = default(string);
-					}
-					this.SendPropertyChanged("Conference");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Review")]
 	public partial class Review : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1305,7 +790,9 @@ namespace WebHoiThao.Models
 		
 		private string _reviewer_id;
 		
-		private System.Nullable<decimal> _rating;
+		private System.Nullable<int> _rating;
+		
+		private System.Nullable<int> _review_confident;
 		
 		private string _comments;
 		
@@ -1325,8 +812,10 @@ namespace WebHoiThao.Models
     partial void Onpaper_idChanged();
     partial void Onreviewer_idChanging(string value);
     partial void Onreviewer_idChanged();
-    partial void OnratingChanging(System.Nullable<decimal> value);
+    partial void OnratingChanging(System.Nullable<int> value);
     partial void OnratingChanged();
+    partial void Onreview_confidentChanging(System.Nullable<int> value);
+    partial void Onreview_confidentChanged();
     partial void OncommentsChanging(string value);
     partial void OncommentsChanged();
     partial void OnstatusChanging(string value);
@@ -1408,8 +897,8 @@ namespace WebHoiThao.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rating", DbType="Decimal(3,2)")]
-		public System.Nullable<decimal> rating
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rating", DbType="Int")]
+		public System.Nullable<int> rating
 		{
 			get
 			{
@@ -1424,6 +913,26 @@ namespace WebHoiThao.Models
 					this._rating = value;
 					this.SendPropertyChanged("rating");
 					this.OnratingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_review_confident", DbType="Int")]
+		public System.Nullable<int> review_confident
+		{
+			get
+			{
+				return this._review_confident;
+			}
+			set
+			{
+				if ((this._review_confident != value))
+				{
+					this.Onreview_confidentChanging(value);
+					this.SendPropertyChanging();
+					this._review_confident = value;
+					this.SendPropertyChanged("review_confident");
+					this.Onreview_confidentChanged();
 				}
 			}
 		}
@@ -1532,253 +1041,6 @@ namespace WebHoiThao.Models
 						this._reviewer_id = default(string);
 					}
 					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Schedule")]
-	public partial class Schedule : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _schedule_id;
-		
-		private string _conference_id;
-		
-		private string _event_name;
-		
-		private string _event_description;
-		
-		private System.DateTime _start_time;
-		
-		private System.DateTime _end_time;
-		
-		private string _location;
-		
-		private EntityRef<Conference> _Conference;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onschedule_idChanging(string value);
-    partial void Onschedule_idChanged();
-    partial void Onconference_idChanging(string value);
-    partial void Onconference_idChanged();
-    partial void Onevent_nameChanging(string value);
-    partial void Onevent_nameChanged();
-    partial void Onevent_descriptionChanging(string value);
-    partial void Onevent_descriptionChanged();
-    partial void Onstart_timeChanging(System.DateTime value);
-    partial void Onstart_timeChanged();
-    partial void Onend_timeChanging(System.DateTime value);
-    partial void Onend_timeChanged();
-    partial void OnlocationChanging(string value);
-    partial void OnlocationChanged();
-    #endregion
-		
-		public Schedule()
-		{
-			this._Conference = default(EntityRef<Conference>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_schedule_id", DbType="VarChar(30) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string schedule_id
-		{
-			get
-			{
-				return this._schedule_id;
-			}
-			set
-			{
-				if ((this._schedule_id != value))
-				{
-					this.Onschedule_idChanging(value);
-					this.SendPropertyChanging();
-					this._schedule_id = value;
-					this.SendPropertyChanged("schedule_id");
-					this.Onschedule_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_conference_id", DbType="VarChar(30)")]
-		public string conference_id
-		{
-			get
-			{
-				return this._conference_id;
-			}
-			set
-			{
-				if ((this._conference_id != value))
-				{
-					if (this._Conference.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onconference_idChanging(value);
-					this.SendPropertyChanging();
-					this._conference_id = value;
-					this.SendPropertyChanged("conference_id");
-					this.Onconference_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_event_name", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string event_name
-		{
-			get
-			{
-				return this._event_name;
-			}
-			set
-			{
-				if ((this._event_name != value))
-				{
-					this.Onevent_nameChanging(value);
-					this.SendPropertyChanging();
-					this._event_name = value;
-					this.SendPropertyChanged("event_name");
-					this.Onevent_nameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_event_description", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		public string event_description
-		{
-			get
-			{
-				return this._event_description;
-			}
-			set
-			{
-				if ((this._event_description != value))
-				{
-					this.Onevent_descriptionChanging(value);
-					this.SendPropertyChanging();
-					this._event_description = value;
-					this.SendPropertyChanged("event_description");
-					this.Onevent_descriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_start_time", DbType="DateTime NOT NULL")]
-		public System.DateTime start_time
-		{
-			get
-			{
-				return this._start_time;
-			}
-			set
-			{
-				if ((this._start_time != value))
-				{
-					this.Onstart_timeChanging(value);
-					this.SendPropertyChanging();
-					this._start_time = value;
-					this.SendPropertyChanged("start_time");
-					this.Onstart_timeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_end_time", DbType="DateTime NOT NULL")]
-		public System.DateTime end_time
-		{
-			get
-			{
-				return this._end_time;
-			}
-			set
-			{
-				if ((this._end_time != value))
-				{
-					this.Onend_timeChanging(value);
-					this.SendPropertyChanging();
-					this._end_time = value;
-					this.SendPropertyChanged("end_time");
-					this.Onend_timeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_location", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string location
-		{
-			get
-			{
-				return this._location;
-			}
-			set
-			{
-				if ((this._location != value))
-				{
-					this.OnlocationChanging(value);
-					this.SendPropertyChanging();
-					this._location = value;
-					this.SendPropertyChanged("location");
-					this.OnlocationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Conference_Schedule", Storage="_Conference", ThisKey="conference_id", OtherKey="conference_id", IsForeignKey=true)]
-		public Conference Conference
-		{
-			get
-			{
-				return this._Conference.Entity;
-			}
-			set
-			{
-				Conference previousValue = this._Conference.Entity;
-				if (((previousValue != value) 
-							|| (this._Conference.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Conference.Entity = null;
-						previousValue.Schedules.Remove(this);
-					}
-					this._Conference.Entity = value;
-					if ((value != null))
-					{
-						value.Schedules.Add(this);
-						this._conference_id = value.conference_id;
-					}
-					else
-					{
-						this._conference_id = default(string);
-					}
-					this.SendPropertyChanged("Conference");
 				}
 			}
 		}

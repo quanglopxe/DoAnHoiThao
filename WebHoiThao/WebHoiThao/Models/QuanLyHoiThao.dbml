@@ -13,24 +13,14 @@
     <Type Name="User">
       <Column Name="user_id" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="salt" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="email" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="full_name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="affiliation" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="country" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="role" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="User_Review" Member="Reviews" ThisKey="user_id" OtherKey="reviewer_id" Type="Review" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Conference" Member="Conferences">
-    <Type Name="Conference">
-      <Column Name="conference_id" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="description" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="start_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="end_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Association Name="Conference_Paper" Member="Papers" ThisKey="conference_id" OtherKey="conference_id" Type="Paper" />
-      <Association Name="Conference_RegistrationForm" Member="RegistrationForms" ThisKey="conference_id" OtherKey="conference_id" Type="RegistrationForm" />
-      <Association Name="Conference_Schedule" Member="Schedules" ThisKey="conference_id" OtherKey="conference_id" Type="Schedule" />
     </Type>
   </Table>
   <Table Name="dbo.Paper" Member="Papers">
@@ -39,22 +29,9 @@
       <Column Name="title" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="abstract" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="author_id" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="conference_id" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
       <Column Name="status" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="Paper_Review" Member="Reviews" ThisKey="paper_id" OtherKey="paper_id" Type="Review" />
       <Association Name="Author_Paper" Member="Author" ThisKey="author_id" OtherKey="author_id" Type="Author" IsForeignKey="true" />
-      <Association Name="Conference_Paper" Member="Conference" ThisKey="conference_id" OtherKey="conference_id" Type="Conference" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.RegistrationForm" Member="RegistrationForms">
-    <Type Name="RegistrationForm">
-      <Column Name="registration_id" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="conference_id" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="participant_name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="email" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="affiliation" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="registration_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Association Name="Conference_RegistrationForm" Member="Conference" ThisKey="conference_id" OtherKey="conference_id" Type="Conference" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Review" Member="Reviews">
@@ -62,23 +39,12 @@
       <Column Name="review_id" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="paper_id" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
       <Column Name="reviewer_id" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="rating" Type="System.Decimal" DbType="Decimal(3,2)" CanBeNull="true" />
+      <Column Name="rating" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="review_confident" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="comments" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="status" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="Paper_Review" Member="Paper" ThisKey="paper_id" OtherKey="paper_id" Type="Paper" IsForeignKey="true" />
       <Association Name="User_Review" Member="User" ThisKey="reviewer_id" OtherKey="user_id" Type="User" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Schedule" Member="Schedules">
-    <Type Name="Schedule">
-      <Column Name="schedule_id" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="conference_id" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="event_name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="event_description" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="start_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="end_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="location" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Association Name="Conference_Schedule" Member="Conference" ThisKey="conference_id" OtherKey="conference_id" Type="Conference" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
