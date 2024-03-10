@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Submission Page";
+    Layout = "~/Views/Shared/_User-VN_Layout.cshtml";
+}
+<div class="card">
+    <table class="table table-responsive">
+        <thead>
+        <th class="text-center">#</th>
+        <th class="text-center">Authors</th>
+        <th class="text-center">Title</th>
+        <th class="text-center">Information</th>
+        <th class="text-center">File</th>
+        <th class="text-center">Student Involvement</th>
+        <th class="text-center">Time</th>
+        </thead>
+        <tbody>
+            @{ 
+                int num = 66;
+            }
+            @for (int i = 0; i <= 10; i++)
+            {
+                <tr>
+                    <td class="text-center">
+                        @num
+                    </td>
+                    <td class="text-center">
+                        Dung Nguyen, Van Dung Hoang and Van Truong, Lan Le
+                    </td>
+                    <td class="text-center">
+                        V-DETR: PURE TRANSFORMER FOR END-TO-END OBJECT DETECTION
+                    </td>
+                    <td class="text-center">
+                        <a href="/Submission/Details" class="btn btn-secondary">Details</a>
+                    </td>
+                    <td class="text-center">
+                        <a href="#" class="btn btn-outline-danger">File</a>
+                    </td>
+                    <td class="text-center">
+                        @i
+                    </td>
+                    <td class="text-center">
+                        @DateTime.Now.ToString("MMM dd, HH:mm")
+                    </td>
+                </tr>
+                num++;
+            }
+        </tbody>
+    </table>
+</div>
