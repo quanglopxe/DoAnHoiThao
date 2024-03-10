@@ -33,12 +33,19 @@ namespace WebHoiThao.Models
     partial void InsertAuthor(Author instance);
     partial void UpdateAuthor(Author instance);
     partial void DeleteAuthor(Author instance);
+<<<<<<< HEAD
+=======
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
     partial void InsertPaper(Paper instance);
     partial void UpdatePaper(Paper instance);
     partial void DeletePaper(Paper instance);
     partial void InsertReview(Review instance);
     partial void UpdateReview(Review instance);
     partial void DeleteReview(Review instance);
+<<<<<<< HEAD
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
@@ -46,6 +53,12 @@ namespace WebHoiThao.Models
 		
 		public QuanLyHoiThaoDataContext() : 
 				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QL_HOITHAOConnectionString2"].ConnectionString, mappingSource)
+=======
+    #endregion
+		
+		public QuanLyHoiThaoDataContext() : 
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QL_HOITHAOConnectionString"].ConnectionString, mappingSource)
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
 		{
 			OnCreated();
 		}
@@ -82,6 +95,17 @@ namespace WebHoiThao.Models
 			}
 		}
 		
+<<<<<<< HEAD
+=======
+		public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
+			}
+		}
+		
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
 		public System.Data.Linq.Table<Paper> Papers
 		{
 			get
@@ -97,6 +121,7 @@ namespace WebHoiThao.Models
 				return this.GetTable<Review>();
 			}
 		}
+<<<<<<< HEAD
 		
 		public System.Data.Linq.Table<User> Users
 		{
@@ -105,6 +130,8 @@ namespace WebHoiThao.Models
 				return this.GetTable<User>();
 			}
 		}
+=======
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Authors")]
@@ -269,6 +296,291 @@ namespace WebHoiThao.Models
 		}
 	}
 	
+<<<<<<< HEAD
+=======
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _user_id;
+		
+		private string _username;
+		
+		private string _password;
+		
+		private string _salt;
+		
+		private string _email;
+		
+		private string _full_name;
+		
+		private string _affiliation;
+		
+		private string _country;
+		
+		private string _role;
+		
+		private EntitySet<Review> _Reviews;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onuser_idChanging(string value);
+    partial void Onuser_idChanged();
+    partial void OnusernameChanging(string value);
+    partial void OnusernameChanged();
+    partial void OnpasswordChanging(string value);
+    partial void OnpasswordChanged();
+    partial void OnsaltChanging(string value);
+    partial void OnsaltChanged();
+    partial void OnemailChanging(string value);
+    partial void OnemailChanged();
+    partial void Onfull_nameChanging(string value);
+    partial void Onfull_nameChanged();
+    partial void OnaffiliationChanging(string value);
+    partial void OnaffiliationChanged();
+    partial void OncountryChanging(string value);
+    partial void OncountryChanged();
+    partial void OnroleChanging(string value);
+    partial void OnroleChanged();
+    #endregion
+		
+		public User()
+		{
+			this._Reviews = new EntitySet<Review>(new Action<Review>(this.attach_Reviews), new Action<Review>(this.detach_Reviews));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_user_id", DbType="VarChar(30) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string user_id
+		{
+			get
+			{
+				return this._user_id;
+			}
+			set
+			{
+				if ((this._user_id != value))
+				{
+					this.Onuser_idChanging(value);
+					this.SendPropertyChanging();
+					this._user_id = value;
+					this.SendPropertyChanged("user_id");
+					this.Onuser_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_username", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string username
+		{
+			get
+			{
+				return this._username;
+			}
+			set
+			{
+				if ((this._username != value))
+				{
+					this.OnusernameChanging(value);
+					this.SendPropertyChanging();
+					this._username = value;
+					this.SendPropertyChanged("username");
+					this.OnusernameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string password
+		{
+			get
+			{
+				return this._password;
+			}
+			set
+			{
+				if ((this._password != value))
+				{
+					this.OnpasswordChanging(value);
+					this.SendPropertyChanging();
+					this._password = value;
+					this.SendPropertyChanged("password");
+					this.OnpasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_salt", DbType="VarChar(200)")]
+		public string salt
+		{
+			get
+			{
+				return this._salt;
+			}
+			set
+			{
+				if ((this._salt != value))
+				{
+					this.OnsaltChanging(value);
+					this.SendPropertyChanging();
+					this._salt = value;
+					this.SendPropertyChanged("salt");
+					this.OnsaltChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string email
+		{
+			get
+			{
+				return this._email;
+			}
+			set
+			{
+				if ((this._email != value))
+				{
+					this.OnemailChanging(value);
+					this.SendPropertyChanging();
+					this._email = value;
+					this.SendPropertyChanged("email");
+					this.OnemailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_full_name", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string full_name
+		{
+			get
+			{
+				return this._full_name;
+			}
+			set
+			{
+				if ((this._full_name != value))
+				{
+					this.Onfull_nameChanging(value);
+					this.SendPropertyChanging();
+					this._full_name = value;
+					this.SendPropertyChanged("full_name");
+					this.Onfull_nameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_affiliation", DbType="VarChar(100)")]
+		public string affiliation
+		{
+			get
+			{
+				return this._affiliation;
+			}
+			set
+			{
+				if ((this._affiliation != value))
+				{
+					this.OnaffiliationChanging(value);
+					this.SendPropertyChanging();
+					this._affiliation = value;
+					this.SendPropertyChanged("affiliation");
+					this.OnaffiliationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_country", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string country
+		{
+			get
+			{
+				return this._country;
+			}
+			set
+			{
+				if ((this._country != value))
+				{
+					this.OncountryChanging(value);
+					this.SendPropertyChanging();
+					this._country = value;
+					this.SendPropertyChanged("country");
+					this.OncountryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_role", DbType="VarChar(50)")]
+		public string role
+		{
+			get
+			{
+				return this._role;
+			}
+			set
+			{
+				if ((this._role != value))
+				{
+					this.OnroleChanging(value);
+					this.SendPropertyChanging();
+					this._role = value;
+					this.SendPropertyChanged("role");
+					this.OnroleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Review", Storage="_Reviews", ThisKey="user_id", OtherKey="reviewer_id")]
+		public EntitySet<Review> Reviews
+		{
+			get
+			{
+				return this._Reviews;
+			}
+			set
+			{
+				this._Reviews.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Reviews(Review entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Reviews(Review entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+	}
+	
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Paper")]
 	public partial class Paper : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -783,6 +1095,7 @@ namespace WebHoiThao.Models
 			}
 		}
 	}
+<<<<<<< HEAD
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
 	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
@@ -1041,5 +1354,7 @@ namespace WebHoiThao.Models
 			entity.User = null;
 		}
 	}
+=======
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
 }
 #pragma warning restore 1591

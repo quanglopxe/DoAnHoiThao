@@ -18,6 +18,7 @@ namespace WebHoiThao.Controllers
         {
             return View();
         }
+<<<<<<< HEAD
 
         public ActionResult Submission_Page()
         {
@@ -29,4 +30,7 @@ namespace WebHoiThao.Controllers
             return View();
         }
     }
+=======
+	}
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
 }

@@ -40,7 +40,11 @@
                         <form action="/User/EditProfile" method="post">
                             <input type="hidden" name="user_id" value="@Html.DisplayFor(model => model.user_id)" />
                             <input type="hidden" name="username" value="@Html.DisplayFor(model => model.username)" />
+<<<<<<< HEAD
                             
+=======
+                            <input type="hidden" name="role" value="@Html.DisplayFor(model => model.role)" />
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
                             <div class="mb-3">
                                 <label class="small mb-1" for="inputUsername">Tên người dùng</label>
                                 <input name="username" value="@Html.DisplayFor(model => model.username)" readonly class="form-control" type="text" placeholder="Username" />

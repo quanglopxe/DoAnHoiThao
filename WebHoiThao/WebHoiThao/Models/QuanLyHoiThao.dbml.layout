@@ -2,6 +2,7 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="QuanLyHoiThao">
   <DataContextMoniker Name="/QuanLyHoiThaoDataContext" />
   <nestedChildShapes>
+<<<<<<< HEAD
     <classShape Id="868a1ddf-b27e-4f12-be70-83f3bc605460" absoluteBounds="0.75, 1.25, 2, 1.5785953776041666">
       <DataClassMoniker Name="/QuanLyHoiThaoDataContext/Author" />
       <nestedChildShapes>
@@ -24,18 +25,48 @@
       <DataClassMoniker Name="/QuanLyHoiThaoDataContext/User" />
       <nestedChildShapes>
         <elementListCompartment Id="f55bd1f5-e8a7-47d7-bd7d-5c59140b5d1d" absoluteBounds="3.515, 5.335, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+=======
+    <classShape Id="f1f78193-74c5-4877-8c07-ce0b14862425" absoluteBounds="0.75, 1.25, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/QuanLyHoiThaoDataContext/Author" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1978f8c6-019e-46a5-9857-5406534bdb01" absoluteBounds="0.765, 1.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="33994f70-5fc5-4610-aec8-16ce62b136ce" absoluteBounds="3.5, 5.25, 2, 2.5401025390625005">
+      <DataClassMoniker Name="/QuanLyHoiThaoDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="167acd44-723b-448d-88fd-83f85debbf75" absoluteBounds="3.515, 5.71, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f289f122-ee61-4489-ae8d-ed254a9274e2" absoluteBounds="3.5, 1.125, 2, 1.7708968098958329">
+      <DataClassMoniker Name="/QuanLyHoiThaoDataContext/Paper" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a7e54388-e4dc-42b6-9e1d-c461072d6f82" absoluteBounds="3.515, 1.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0ac60959-728e-4a0f-80e2-4c9151890806" absoluteBounds="6.25, 0.875, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/QuanLyHoiThaoDataContext/Review" />
+      <nestedChildShapes>
+        <elementListCompartment Id="52ee3e17-7311-4632-946a-997f7bd2aecd" absoluteBounds="6.265, 1.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(2.75 : 2.03929768880208); (3.5 : 2.03929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/QuanLyHoiThaoDataContext/Author/Author_Paper" />
       <nodes>
+<<<<<<< HEAD
         <classShapeMoniker Id="868a1ddf-b27e-4f12-be70-83f3bc605460" />
         <classShapeMoniker Id="21694554-261b-4c9e-aabd-4b3b6cfea710" />
+=======
+        <classShapeMoniker Id="f1f78193-74c5-4877-8c07-ce0b14862425" />
+        <classShapeMoniker Id="f289f122-ee61-4489-ae8d-ed254a9274e2" />
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(5.5 : 2.01044840494792); (6.25 : 2.01044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/QuanLyHoiThaoDataContext/Paper/Paper_Review" />
       <nodes>
+<<<<<<< HEAD
         <classShapeMoniker Id="21694554-261b-4c9e-aabd-4b3b6cfea710" />
         <classShapeMoniker Id="11e3fdbe-b21a-48ce-905a-e81b2cb3e1af" />
       </nodes>
@@ -45,6 +76,17 @@
       <nodes>
         <classShapeMoniker Id="309f9bf3-5539-4844-811b-3306aeacb7c5" />
         <classShapeMoniker Id="11e3fdbe-b21a-48ce-905a-e81b2cb3e1af" />
+=======
+        <classShapeMoniker Id="f289f122-ee61-4489-ae8d-ed254a9274e2" />
+        <classShapeMoniker Id="0ac60959-728e-4a0f-80e2-4c9151890806" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 6.52005126953125); (7.25 : 6.52005126953125); (7.25 : 3.03049967447917)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/QuanLyHoiThaoDataContext/User/User_Review" />
+      <nodes>
+        <classShapeMoniker Id="33994f70-5fc5-4610-aec8-16ce62b136ce" />
+        <classShapeMoniker Id="0ac60959-728e-4a0f-80e2-4c9151890806" />
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
       </nodes>
     </associationConnector>
   </nestedChildShapes>

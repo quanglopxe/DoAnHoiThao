@@ -16,6 +16,7 @@ G:\HK6\DoAnHoiThao\WebHoiThao\WebHoiThao\bin\System.Web.Mvc.xml
 G:\HK6\DoAnHoiThao\WebHoiThao\WebHoiThao\obj\Debug\WebHoiThao.csprojResolveAssemblyReference.cache
 G:\HK6\DoAnHoiThao\WebHoiThao\WebHoiThao\obj\Debug\WebHoiThao.dll
 G:\HK6\DoAnHoiThao\WebHoiThao\WebHoiThao\obj\Debug\WebHoiThao.pdb
+<<<<<<< HEAD
 C:\DoAnHoiThao\WebHoiThao\WebHoiThao\bin\WebHoiThao.dll.config
 C:\DoAnHoiThao\WebHoiThao\WebHoiThao\bin\WebHoiThao.dll
 C:\DoAnHoiThao\WebHoiThao\WebHoiThao\bin\WebHoiThao.pdb
@@ -55,3 +56,7 @@ F:\Code\C#\DoAnHoiThao\WebHoiThao\WebHoiThao\obj\Debug\WebHoiThao.csproj.CopyCom
 F:\Code\C#\DoAnHoiThao\WebHoiThao\WebHoiThao\obj\Debug\WebHoiThao.dll
 F:\Code\C#\DoAnHoiThao\WebHoiThao\WebHoiThao\obj\Debug\WebHoiThao.pdb
 F:\Code\C#\DoAnHoiThao\WebHoiThao\WebHoiThao\bin\Microsoft.Web.Infrastructure.dll
+=======
+G:\HK6\DoAnHoiThao\WebHoiThao\WebHoiThao\bin\BCrypt.Net-Next.dll
+G:\HK6\DoAnHoiThao\WebHoiThao\WebHoiThao\bin\BCrypt.Net-Next.xml
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05

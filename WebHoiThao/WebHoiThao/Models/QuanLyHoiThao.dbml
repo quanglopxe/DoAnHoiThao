@@ -1,7 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QL_HOITHAO" Class="QuanLyHoiThaoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+<<<<<<< HEAD
   <Connection Mode="WebSettings" ConnectionString="Data Source=.;Initial Catalog=QL_HOITHAO;User ID=sa;Password=1234567890" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QL_HOITHAOConnectionString2" Provider="System.Data.SqlClient" />
 	<!--"Data Source=DESKTOP-IDU8F06;Initial Catalog=QL_HOITHAO;User ID=sa"-->
 	<Table Name="dbo.Authors" Member="Authors">
+=======
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-S56F490\DUONGTHUANQUANG;Initial Catalog=QL_HOITHAO;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QL_HOITHAOConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Authors" Member="Authors">
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
     <Type Name="Author">
       <Column Name="author_id" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
@@ -10,6 +15,23 @@
       <Association Name="Author_Paper" Member="Papers" ThisKey="author_id" OtherKey="author_id" Type="Paper" />
     </Type>
   </Table>
+<<<<<<< HEAD
+=======
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="user_id" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="salt" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="full_name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="affiliation" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="country" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="role" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="User_Review" Member="Reviews" ThisKey="user_id" OtherKey="reviewer_id" Type="Review" />
+    </Type>
+  </Table>
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
   <Table Name="dbo.Paper" Member="Papers">
     <Type Name="Paper">
       <Column Name="paper_id" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -34,6 +56,7 @@
       <Association Name="User_Review" Member="User" ThisKey="reviewer_id" OtherKey="user_id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
+<<<<<<< HEAD
   <Table Name="dbo.Users" Member="Users">
     <Type Name="User">
       <Column Name="user_id" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -47,4 +70,6 @@
       <Association Name="User_Review" Member="Reviews" ThisKey="user_id" OtherKey="reviewer_id" Type="Review" />
     </Type>
   </Table>
+=======
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
 </Database>

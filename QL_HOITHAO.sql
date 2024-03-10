@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Drop DATABASE QL_HOITHAO;
 CREATE DATABASE QL_HOITHAO;
 GO
@@ -12,6 +13,23 @@ CREATE TABLE Users (
   country VARCHAR(100) ,
   role VARCHAR(50)  DEFAULT 'User',
   CHECK (role IN ('Admin', 'User'))
+=======
+CREATE DATABASE QL_HOITHAO;
+GO
+USE QL_HOITHAO;
+use master
+drop database QL_HOITHAO
+CREATE TABLE Users (
+  user_id VARCHAR(30) PRIMARY KEY,
+  username VARCHAR(50) NOT NULL,
+  password VARCHAR(200) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  full_name VARCHAR(100) NOT NULL,
+  affiliation VARCHAR(100),
+  country VARCHAR(100) NOT NULL,
+  role VARCHAR(50),
+  CHECK (role IN ('Admin', null))
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
 );
 
 CREATE TABLE Authors (
@@ -44,9 +62,12 @@ CREATE TABLE Review (
   FOREIGN KEY (reviewer_id) REFERENCES Users(user_id)
 );
 
+<<<<<<< HEAD
 INSERT INTO Users
 VALUES
 ('1','quang','123','quang@gmail.com','duong thuan quang','DH CNTP','Viet Nam','Admin'),
 ('2','user','123','user@gmail.com','nguyen van a','DH CNTP','Viet Nam','User')
+=======
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
 
 select * from Users

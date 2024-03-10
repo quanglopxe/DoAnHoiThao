@@ -4,6 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebHoiThao.Models;
+<<<<<<< HEAD
+=======
+using BCryptNet = BCrypt.Net.BCrypt;
+
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
 
 namespace WebHoiThao.Controllers
 {
@@ -11,6 +16,16 @@ namespace WebHoiThao.Controllers
     {
         QuanLyHoiThaoDataContext db = new QuanLyHoiThaoDataContext();
 
+<<<<<<< HEAD
+=======
+        public static string HashPassword(string password)
+        {                        
+            var salt = BCrypt.Net.BCrypt.GenerateSalt();
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);           
+            return hashedPassword;
+        }        
+
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
         public ActionResult Login()
         {
             return View();
@@ -18,6 +33,7 @@ namespace WebHoiThao.Controllers
         [HttpPost]
         public ActionResult Login(User user)
         {
+<<<<<<< HEAD
             try
             {
                 User nd = db.Users.FirstOrDefault(t => t.username == user.username && t.password == user.password);
@@ -27,6 +43,26 @@ namespace WebHoiThao.Controllers
                     ViewBag.ErrorMessage = "Tên tài khoản hoặc mật khẩu không đúng.";
                     return View();
                 }
+=======
+            if (user == null)
+                return View();
+            try
+            {
+                User nd = db.Users.FirstOrDefault(t => t.username == user.username);
+                
+                if (nd == null)
+                {                     
+                    ViewBag.ErrorMessage = "Tên tài khoản không tồn tại!";
+                    return View();
+                }
+                string inputPassword = user.password;
+                if (!BCrypt.Net.BCrypt.Verify(inputPassword,nd.password))
+                {
+                    ViewBag.ErrorMessage = "Mật khẩu không đúng.";
+                    return View();
+                }
+                Session["User"] = nd;
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
                 if (nd != null && nd.role == "Admin")
                 {
                     return RedirectToAction("Admin_Page", "Home");
@@ -46,7 +82,11 @@ namespace WebHoiThao.Controllers
         [HttpPost]
         public ActionResult Register(User user)
         {
+<<<<<<< HEAD
             string maND = "0" + String.Format("{0:D1}", db.Users.Count() + 1);
+=======
+            string maND = "0" + String.Format("{0:D4}", db.Users.Count() + 1);
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
 
             try
             {
@@ -57,6 +97,10 @@ namespace WebHoiThao.Controllers
                     return View();
                 }
                 user.user_id = maND;
+<<<<<<< HEAD
+=======
+                user.password = HashPassword(user.password);
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
                 db.Users.InsertOnSubmit(user);
                 db.SubmitChanges();
                 return RedirectToAction("Login", "User");
@@ -81,6 +125,10 @@ namespace WebHoiThao.Controllers
             try
             {
                 User nd = db.Users.FirstOrDefault(t => t.user_id == user.user_id);
+<<<<<<< HEAD
+=======
+                nd.user_id = user.user_id;
+>>>>>>> 13e90980de457b2b317f2eeb540216ceca657d05
                 nd.full_name = user.full_name;
                 nd.email = user.email;
                 nd.affiliation = user.affiliation;
